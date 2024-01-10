@@ -1,0 +1,41 @@
+{
+  "name": "async-renderer-server",
+  "version": "1.0.0",
+  "main": "server/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --trace-warnings -L -V -r dotenv/config server/app.js",
+    "start": "node server/app.js",
+    "test": "node -r dotenv/config test/example.js",
+    "logs_staging": "gcloud config set project async-2-staging && gcloud app logs tail -s renderer-server",
+    "logs_prod": "gcloud config set project async-v50 && gcloud app logs tail -s renderer-server",
+    "//postinstall": "Required for BullMQ to work with ESM. See https://nodejs.org/api/esm.html#import-expressions",
+    "postinstall": "sed -i -e 's/require(processorFile)/await import(processorFile)/g' ./node_modules/bullmq/dist/cjs/classes/child-processor.js"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.6.0",
+    "axios": "^1.6.2",
+    "bullmq": "4.13.2",
+    "cloudinary": "^1.41.0",
+    "ethers": "^6.8.1",
+    "ffmpeg-static": "^5.2.0",
+    "file-type": "^18.7.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "get-audio-duration": "^4.0.1",
+    "ioredis": "^5.3.2",
+    "jimp": "^0.22.10",
+    "pino": "^8.16.1",
+    "pino-abstract-transport": "^1.1.0",
+    "pino-pretty": "^10.2.3",
+    "seedrandom": "^3.0.5",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}

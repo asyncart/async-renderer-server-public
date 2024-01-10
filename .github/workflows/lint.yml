@@ -1,0 +1,32 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+      - staging
+
+  pull_request:
+    branches:
+      - master
+      - staging
+
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: curl
+        uses: wei/curl@v1
+        with:
+          args: -X POST https://jenkins.async.art/job/Staging/job/Deploy-renderer/buildWithParameters --user "dmitry@async.art:119bf97a2629086e281696ad20388b55e5" --data "GITBRANCH=staging"

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+tmp
+.env
+config
+app_prod.yaml
+app_staging.yaml
+misc
