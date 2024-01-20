@@ -3,8 +3,8 @@
 1. Install dependencies `npm i`
 2. Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install?authuser=1) for your operating system
 3. Install Redis 6.x and have it run it on port 6379 (standard Redis port).
-4. Ask @bbarton for development `.env` file and place it to the root directory
-5. Ask @bbarton to add you to staging project on Google Cloud and assign you Storage Object Admin & Editor roles
+4. Create a development `.env` file and place it to the root directory
+5. Add yourself to staging project on Google Cloud and assign you Storage Object Admin & Editor roles
 6. After being added to Google Cloud Project: `gcloud auth application-default login`
 7. Start dev server `npm run dev`
 
